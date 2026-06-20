@@ -10,18 +10,18 @@ export function Contact() {
         </p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
           <a
-            href="tel:+2348001234567"
+            href="tel:+2348138029523"
             className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <span aria-hidden="true">📞</span>
-            +234 800 123 4567
+            08138029523
           </a>
           <a
-            href="mailto:hello@cleancall.ng"
+            href="mailto:bankolejohn@gmail.com"
             className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             <span aria-hidden="true">✉️</span>
-            hello@cleancall.ng
+            bankolejohn@gmail.com
           </a>
         </div>
       </div>

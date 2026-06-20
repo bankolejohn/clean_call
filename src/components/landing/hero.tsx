@@ -25,8 +25,8 @@ export function Hero() {
           <Button
             asChild
             size="lg"
-            variant="outline"
-            className="w-full border-primary-foreground text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
+            variant="secondary"
+            className="w-full text-base sm:w-auto"
           >
             <Link href="/register/collector">I Provide Waste Services</Link>
           </Button>
