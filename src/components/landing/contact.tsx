@@ -8,21 +8,39 @@ export function Contact() {
         <p className="mt-3 text-base text-muted-foreground sm:text-lg">
           Have questions? Reach out to us.
         </p>
-        <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-8">
-          <a
-            href="tel:+2348138029523"
-            className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            <span aria-hidden="true">📞</span>
-            08138029523
-          </a>
-          <a
-            href="mailto:bankolejohn@gmail.com"
-            className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          >
-            <span aria-hidden="true">✉️</span>
-            bankolejohn@gmail.com
-          </a>
+        <div className="mt-8 flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+            <a
+              href="tel:+2348138029523"
+              className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              <span aria-hidden="true">📞</span>
+              08138029523
+            </a>
+            <a
+              href="mailto:bankolejohn@gmail.com"
+              className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              <span aria-hidden="true">✉️</span>
+              bankolejohn@gmail.com
+            </a>
+          </div>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+            <a
+              href="tel:+2347048363548"
+              className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              <span aria-hidden="true">📞</span>
+              07048363548
+            </a>
+            <a
+              href="mailto:fisayoowolabi5@gmail.com"
+              className="inline-flex items-center gap-2 text-base font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              <span aria-hidden="true">✉️</span>
+              fisayoowolabi5@gmail.com
+            </a>
+          </div>
         </div>
       </div>
     </section>
