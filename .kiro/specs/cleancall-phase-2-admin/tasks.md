@@ -218,59 +218,59 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
   - Run `npx tsc --noEmit` and `npm run test` (staging/branch DB configured); ensure Phase 1 suite still passes
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 12. Build chart components (Recharts, ResponsiveContainer)
-  - [~] 12.1 Implement chart components in `src/components/admin/charts/`
+- [x] 12. Build chart components (Recharts, ResponsiveContainer)
+  - [x] 12.1 Implement chart components in `src/components/admin/charts/`
     - `registrations-over-time.tsx` (line), `customers-vs-managers.tsx` (**bar chart — required, NOT a pie chart**), `by-lga.tsx` (bar), `willingness-to-pay.tsx` (pie), `existing-collection.tsx` (pie)
     - Each wrapped in `ResponsiveContainer`; render from props (query-derived data), never hardcoded
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 17.1, 17.3_
 
-  - [ ]* 12.2 Write unit/render tests for chart components
+  - [x]* 12.2 Write unit/render tests for chart components
     - `tests/unit/charts.test.ts`: components render given sample datasets; customers-vs-managers renders a bar (not pie) chart
     - _Requirements: 7.2_
 
-- [ ] 13. Build and extend admin UI pages, shared controls, and navigation
-  - [~] 13.1 Expand the dashboard page
+- [x] 13. Build and extend admin UI pages, shared controls, and navigation
+  - [x] 13.1 Expand the dashboard page
     - Update `src/app/admin/dashboard/page.tsx` to consume `/dashboard`, extend `stats-cards.tsx` props for new counts, and compose the chart components
     - _Requirements: 6.1, 6.3, 7.1–7.7, 17.1, 17.3_
 
-  - [~] 13.2 Build shared status-control component
+  - [x] 13.2 Build shared status-control component
     - `src/components/admin/status-control.tsx`: dropdown for customers, action buttons for waste managers; PATCHes then calls `router.refresh()`
     - _Requirements: 3.3, 5.1, 5.3, 5.4, 5.5, 5.6, 9.3, 11.3_
 
-  - [~] 13.3 Build customer detail page
+  - [x] 13.3 Build customer detail page
     - `src/app/admin/registrations/customers/[id]/page.tsx`: sections for personal info, location, waste info, current collection arrangement, market interest, status; null fields via `displayField` → "Not recorded"; embed status-control; not-found handling
     - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-  - [~] 13.4 Build waste-manager detail page
+  - [x] 13.4 Build waste-manager detail page
     - `src/app/admin/registrations/collectors/[id]/page.tsx`: business/service/status/marketplace sections using "Waste Manager" labels via `terminology.ts`; null fields → "Not recorded"; lifecycle action controls; not-found handling
     - _Requirements: 11.1, 11.2, 11.3, 11.4_
 
-  - [~] 13.5 Build locations and analytics pages
+  - [x] 13.5 Build locations and analytics pages
     - `src/app/admin/locations/page.tsx`: table + simple charts for all 16 LGAs (including zeros), customer counts and service-area coverage; no interactive map
     - `src/app/admin/analytics/page.tsx`: chart-focused, reusing chart components
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 7.1–7.7_
 
-  - [~] 13.6 Build activity-log page
+  - [x] 13.6 Build activity-log page
     - `src/app/admin/activity-log/page.tsx`: table of entries ordered `created_at DESC`
     - _Requirements: 14.4_
 
-  - [~] 13.7 Extend registration tables, filter bar, and export button props
+  - [x] 13.7 Extend registration tables, filter bar, and export button props
     - `registration-table.tsx`: add customer columns (willingness_to_pay, has_existing_collection, status) and manager columns (status, wants_more_customers) + per-record view/verify/approve/suspend/contact actions
     - `search-filter-bar.tsx`: add filters (willingness_to_pay, has_existing_collection, customer status, registration date; provider status, wants_more_customers)
     - `export-button.tsx`: pass extended filter query string
     - Preserve existing search/sort/pagination behavior
     - _Requirements: 8.1, 8.2, 8.3, 10.1, 10.3, 10.4, 13.3, 17.2_
 
-  - [~] 13.8 Extend admin navigation
+  - [x] 13.8 Extend admin navigation
     - `src/app/admin/layout.tsx`: seven top-level areas (Dashboard, Customers, Waste Managers, Locations, Analytics, Exports, Settings); Customers sub-views (All, Interested in Service, Existing Collection, No Collection) and Waste Managers sub-views (All Providers, Pending Verification, Active, Suspended) mapped to query params consumed by the list routes
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 16.1_
 
-  - [ ]* 13.9 Write unit tests for navigation and detail rendering
+  - [x]* 13.9 Write unit tests for navigation and detail rendering
     - `tests/unit/navigation.test.ts`: renders seven top-level areas and required sub-views
     - `tests/unit/detail-pages.test.ts`: null fields render "Not recorded"; waste-manager page uses "Waste Manager" labels
     - _Requirements: 15.1, 15.2, 15.3, 9.2, 11.1, 11.2_
 
-- [~] 14. Regression checkpoint - Phase 1 stays green, full Phase 2 suite passes
+- [x] 14. Regression checkpoint - Phase 1 stays green, full Phase 2 suite passes
   - Run `npx tsc --noEmit` and the full `npm run test` (unit + properties + integration against staging)
   - Confirm the existing Phase 1 test suite passes unchanged and Phase 1 customer/collector registration still works
   - Confirm existing Phase 1 CSV column positions are unchanged (new columns appended only)

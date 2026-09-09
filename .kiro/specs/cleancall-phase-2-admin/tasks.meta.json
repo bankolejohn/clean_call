@@ -396,6 +396,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959167357
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962282932
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962467666
       }
     ],
     "13.1 Expand the dashboard page": [
@@ -403,6 +413,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959167518
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962973357
       }
     ],
     "13.2 Build shared status-control component": [
@@ -410,6 +425,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959167726
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962782491
       }
     ],
     "13.3 Build customer detail page": [
@@ -417,6 +437,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959167904
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962974295
       }
     ],
     "13.4 Build waste-manager detail page": [
@@ -424,6 +449,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959168687
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962975038
       }
     ],
     "13.5 Build locations and analytics pages": [
@@ -431,6 +461,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959168966
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962976490
       }
     ],
     "13.6 Build activity-log page": [
@@ -438,6 +473,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959169127
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962780142
       }
     ],
     "13.7 Extend registration tables, filter bar, and export button props": [
@@ -445,6 +485,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959169282
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962780892
       }
     ],
     "13.8 Extend admin navigation": [
@@ -452,6 +497,11 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959169690
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962783248
       }
     ],
     "14. Regression checkpoint - Phase 1 stays green, full Phase 2 suite passes": [
@@ -459,6 +509,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959170113
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963104326
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963559471
       }
     ],
     "15.1 Capture a Supabase recovery point / backup for production and record it as the documented restore target": [
@@ -706,6 +766,39 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788962070452
+      }
+    ],
+    "12. Build chart components (Recharts, ResponsiveContainer)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962468200
+      }
+    ],
+    "12.2 Write unit/render tests for chart components": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962784554
+      }
+    ],
+    "13. Build and extend admin UI pages, shared controls, and navigation": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962976715
+      }
+    ],
+    "13.9 Write unit tests for navigation and detail rendering": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962987199
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963103432
       }
     ]
   }

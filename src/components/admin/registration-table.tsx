@@ -19,12 +19,22 @@ interface RegistrationTableProps {
   columns: ColumnDef[];
   data: Record<string, unknown>[];
   emptyMessage?: string;
+  /**
+   * Optional per-row actions rendered in a trailing column (e.g. a "View" link
+   * or lifecycle buttons). When omitted, no actions column is rendered so that
+   * existing usages remain unchanged.
+   */
+  actions?: (row: Record<string, unknown>) => React.ReactNode;
+  /** Header label for the trailing actions column. */
+  actionsHeader?: string;
 }
 
 export function RegistrationTable({
   columns,
   data,
   emptyMessage = "No matching records found",
+  actions,
+  actionsHeader = "Actions",
 }: RegistrationTableProps) {
   if (data.length === 0) {
     return (
@@ -41,6 +51,7 @@ export function RegistrationTable({
           {columns.map((col) => (
             <TableHead key={col.key}>{col.header}</TableHead>
           ))}
+          {actions && <TableHead>{actionsHeader}</TableHead>}
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -53,6 +64,7 @@ export function RegistrationTable({
                   : String(row[col.key] ?? "")}
               </TableCell>
             ))}
+            {actions && <TableCell>{actions(row)}</TableCell>}
           </TableRow>
         ))}
       </TableBody>

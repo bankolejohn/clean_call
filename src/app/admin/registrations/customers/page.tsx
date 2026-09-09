@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { RegistrationTable, type ColumnDef } from "@/components/admin/registration-table";
 import { SearchFilterBar } from "@/components/admin/search-filter-bar";
@@ -14,6 +16,21 @@ const columns: ColumnDef[] = [
   { key: "address", header: "Address" },
   { key: "lga", header: "LGA" },
   { key: "category", header: "Category" },
+  {
+    key: "willingness_to_pay",
+    header: "Willingness to Pay",
+    render: (value) => String(value || "—"),
+  },
+  {
+    key: "has_existing_collection",
+    header: "Existing Collection",
+    render: (value) => String(value || "—"),
+  },
+  {
+    key: "status",
+    header: "Status",
+    render: (value) => String(value || "—"),
+  },
   { key: "disposal_method", header: "Disposal Method" },
   { key: "collection_frequency", header: "Frequency" },
   {
@@ -28,7 +45,21 @@ const columns: ColumnDef[] = [
   },
 ];
 
-export default function CustomersPage() {
+function CustomersPageContent() {
+  const searchParams = useSearchParams();
+  // Sub-view URL params drive the initial filter state (Requirement 15.2/15.4).
+  // `interested=true` maps to the willingness-in-{Yes,Maybe} API filter.
+  // `status=...` pre-selects the customer status filter.
+  // `existing=yes` pre-selects has_existing_collection = "Yes".
+  // NOTE: `existing=no` maps to multiple values ("No" and "I manage it myself")
+  // which the single-value has_existing_collection filter can't express, so it
+  // is passed through as a dedicated `existing` API param when supported; here
+  // we leave the has_existing_collection filter unset for existing=no.
+  // TODO: support the No-collection multi-value case via a dedicated API param.
+  const initialInterested = searchParams.get("interested") === "true";
+  const initialStatus = searchParams.get("status") || "";
+  const initialExisting = searchParams.get("existing") || "";
+
   const [data, setData] = useState<Customer[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -36,6 +67,14 @@ export default function CustomersPage() {
   const [search, setSearch] = useState("");
   const [lga, setLga] = useState("");
   const [category, setCategory] = useState("");
+  const [willingnessToPay, setWillingnessToPay] = useState("");
+  const [hasExistingCollection, setHasExistingCollection] = useState(
+    initialExisting === "yes" ? "Yes" : ""
+  );
+  const [status, setStatus] = useState(initialStatus);
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
+  const [interested] = useState(initialInterested);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,6 +104,14 @@ export default function CustomersPage() {
     if (debouncedSearch) params.set("search", debouncedSearch);
     if (lga && lga !== "all") params.set("lga", lga);
     if (category && category !== "all") params.set("category", category);
+    if (willingnessToPay && willingnessToPay !== "all")
+      params.set("willingness_to_pay", willingnessToPay);
+    if (hasExistingCollection && hasExistingCollection !== "all")
+      params.set("has_existing_collection", hasExistingCollection);
+    if (status && status !== "all") params.set("status", status);
+    if (dateFrom) params.set("dateFrom", dateFrom);
+    if (dateTo) params.set("dateTo", dateTo);
+    if (interested) params.set("interested", "true");
 
     try {
       const response = await fetch(`/api/admin/customers?${params.toString()}`);
@@ -84,7 +131,19 @@ export default function CustomersPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, pageSize, debouncedSearch, lga, category]);
+  }, [
+    page,
+    pageSize,
+    debouncedSearch,
+    lga,
+    category,
+    willingnessToPay,
+    hasExistingCollection,
+    status,
+    dateFrom,
+    dateTo,
+    interested,
+  ]);
 
   useEffect(() => {
     fetchCustomers();
@@ -97,6 +156,31 @@ export default function CustomersPage() {
 
   const handleCategoryChange = useCallback((value: string) => {
     setCategory(value);
+    setPage(1);
+  }, []);
+
+  const handleWillingnessChange = useCallback((value: string) => {
+    setWillingnessToPay(value);
+    setPage(1);
+  }, []);
+
+  const handleExistingCollectionChange = useCallback((value: string) => {
+    setHasExistingCollection(value);
+    setPage(1);
+  }, []);
+
+  const handleStatusChange = useCallback((value: string) => {
+    setStatus(value);
+    setPage(1);
+  }, []);
+
+  const handleDateFromChange = useCallback((value: string) => {
+    setDateFrom(value);
+    setPage(1);
+  }, []);
+
+  const handleDateToChange = useCallback((value: string) => {
+    setDateTo(value);
     setPage(1);
   }, []);
 
@@ -113,6 +197,12 @@ export default function CustomersPage() {
             search={debouncedSearch}
             lga={lga}
             category={category}
+            willingnessToPay={willingnessToPay}
+            hasExistingCollection={hasExistingCollection}
+            status={status}
+            dateFrom={dateFrom}
+            dateTo={dateTo}
+            interested={interested ? "true" : undefined}
           />
         </div>
       </div>
@@ -125,6 +215,16 @@ export default function CustomersPage() {
         showCategoryFilter={true}
         category={category}
         onCategoryChange={handleCategoryChange}
+        willingnessToPay={willingnessToPay}
+        onWillingnessToPayChange={handleWillingnessChange}
+        hasExistingCollection={hasExistingCollection}
+        onHasExistingCollectionChange={handleExistingCollectionChange}
+        customerStatus={status}
+        onCustomerStatusChange={handleStatusChange}
+        dateFrom={dateFrom}
+        onDateFromChange={handleDateFromChange}
+        dateTo={dateTo}
+        onDateToChange={handleDateToChange}
       />
 
       {error && (
@@ -145,6 +245,14 @@ export default function CustomersPage() {
             columns={columns}
             data={data as unknown as Record<string, unknown>[]}
             emptyMessage="No matching records found"
+            actions={(row) => (
+              <Link
+                href={`/admin/registrations/customers/${row.id}`}
+                className="text-primary underline-offset-4 hover:underline text-sm"
+              >
+                View
+              </Link>
+            )}
           />
 
           {/* Pagination Controls */}
@@ -190,5 +298,15 @@ export default function CustomersPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function CustomersPage() {
+  // useSearchParams (read in CustomersPageContent) must sit inside a Suspense
+  // boundary so this client page doesn't bail out of prerendering.
+  return (
+    <Suspense fallback={null}>
+      <CustomersPageContent />
+    </Suspense>
   );
 }

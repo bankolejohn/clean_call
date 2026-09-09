@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { SearchFilterBar } from "@/components/admin/search-filter-bar";
 import { ExportButton } from "@/components/admin/export-button";
@@ -33,6 +35,16 @@ const COLLECTOR_COLUMNS: ColumnDef[] = [
   { key: "vehicle_count", header: "Vehicles" },
   { key: "years_in_operation", header: "Years" },
   {
+    key: "status",
+    header: "Status",
+    render: (value) => String(value || "—"),
+  },
+  {
+    key: "wants_more_customers",
+    header: "Wants More Customers",
+    render: (value) => String(value || "—"),
+  },
+  {
     key: "created_at",
     header: "Registered",
     render: (value) =>
@@ -40,13 +52,20 @@ const COLLECTOR_COLUMNS: ColumnDef[] = [
   },
 ];
 
-export default function CollectorsPage() {
+function CollectorsPageContent() {
+  const searchParams = useSearchParams();
+  // `status=...` pre-selects the provider status filter for the Waste Managers
+  // navigation sub-views (Requirement 15.3/15.5).
+  const initialStatus = searchParams.get("status") || "";
+
   const [data, setData] = useState<Collector[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [pageSize] = useState(20);
   const [search, setSearch] = useState("");
   const [lga, setLga] = useState("");
+  const [status, setStatus] = useState(initialStatus);
+  const [wantsMoreCustomers, setWantsMoreCustomers] = useState("");
   const [loading, setLoading] = useState(true);
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
@@ -59,6 +78,9 @@ export default function CollectorsPage() {
       params.set("pageSize", String(pageSize));
       if (search) params.set("search", search);
       if (lga && lga !== "all") params.set("lga", lga);
+      if (status && status !== "all") params.set("status", status);
+      if (wantsMoreCustomers && wantsMoreCustomers !== "all")
+        params.set("wants_more_customers", wantsMoreCustomers);
 
       const response = await fetch(`/api/admin/collectors?${params.toString()}`);
       if (!response.ok) {
@@ -73,7 +95,7 @@ export default function CollectorsPage() {
     } finally {
       setLoading(false);
     }
-  }, [page, pageSize, search, lga]);
+  }, [page, pageSize, search, lga, status, wantsMoreCustomers]);
 
   useEffect(() => {
     fetchCollectors();
@@ -90,14 +112,26 @@ export default function CollectorsPage() {
     setPage(1);
   };
 
+  const handleStatusChange = (value: string) => {
+    setStatus(value);
+    setPage(1);
+  };
+
+  const handleWantsMoreCustomersChange = (value: string) => {
+    setWantsMoreCustomers(value);
+    setPage(1);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Collector Registrations</h1>
+        <h1 className="text-2xl font-bold">Waste Manager Registrations</h1>
         <ExportButton
           view="collectors"
           search={search}
           lga={lga}
+          status={status}
+          wantsMoreCustomers={wantsMoreCustomers}
         />
       </div>
 
@@ -107,6 +141,10 @@ export default function CollectorsPage() {
         lga={lga}
         onLgaChange={handleLgaChange}
         showCategoryFilter={false}
+        providerStatus={status}
+        onProviderStatusChange={handleStatusChange}
+        wantsMoreCustomers={wantsMoreCustomers}
+        onWantsMoreCustomersChange={handleWantsMoreCustomersChange}
       />
 
       {loading ? (
@@ -118,6 +156,14 @@ export default function CollectorsPage() {
           columns={COLLECTOR_COLUMNS}
           data={data as unknown as Record<string, unknown>[]}
           emptyMessage="No matching records found"
+          actions={(row) => (
+            <Link
+              href={`/admin/registrations/collectors/${row.id}`}
+              className="text-primary underline-offset-4 hover:underline text-sm"
+            >
+              View
+            </Link>
+          )}
         />
       )}
 
@@ -169,5 +215,15 @@ export default function CollectorsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CollectorsPage() {
+  // useSearchParams (read in CollectorsPageContent) must sit inside a Suspense
+  // boundary so this client page doesn't bail out of prerendering.
+  return (
+    <Suspense fallback={null}>
+      <CollectorsPageContent />
+    </Suspense>
   );
 }
