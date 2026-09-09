@@ -6,6 +6,13 @@ import { createClient } from "@/lib/supabase/server";
 import type { ActionResult } from "@/types";
 
 export async function registerCustomer(formData: FormData): Promise<ActionResult> {
+  // Reads an optional field: returns the string only when it is present and
+  // non-empty, otherwise undefined so the optional Zod enums validate cleanly.
+  const optional = (key: string): string | undefined => {
+    const value = formData.get(key);
+    return typeof value === "string" && value.length > 0 ? value : undefined;
+  };
+
   // Extract form data
   const rawData = {
     full_name: formData.get("full_name") as string,
@@ -16,6 +23,11 @@ export async function registerCustomer(formData: FormData): Promise<ActionResult
     category: formData.get("category") as string,
     disposal_method: formData.get("disposal_method") as string,
     collection_frequency: formData.get("collection_frequency") as string,
+    // Phase 2 market-research fields — optional, only included when present.
+    willingness_to_pay: optional("willingness_to_pay"),
+    preferred_price_range: optional("preferred_price_range"),
+    has_existing_collection: optional("has_existing_collection"),
+    satisfaction_with_existing: optional("satisfaction_with_existing"),
   };
 
   // Validate with Zod
@@ -67,6 +79,14 @@ export async function registerCustomer(formData: FormData): Promise<ActionResult
     category: sanitizedData.category,
     disposal_method: sanitizedData.disposal_method,
     collection_frequency: sanitizedData.collection_frequency,
+    // Phase 2 market-research fields. Insert the validated enum values from
+    // parseResult.data (not the sanitized copy) so the exact strings — including
+    // the ₦ symbol and en-dash in price ranges — satisfy the DB CHECK constraints.
+    // Omitted fields become null so Phase 1 submissions still succeed.
+    willingness_to_pay: parseResult.data.willingness_to_pay ?? null,
+    preferred_price_range: parseResult.data.preferred_price_range ?? null,
+    has_existing_collection: parseResult.data.has_existing_collection ?? null,
+    satisfaction_with_existing: parseResult.data.satisfaction_with_existing ?? null,
   });
 
   if (insertError) {

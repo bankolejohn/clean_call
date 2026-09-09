@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import { collectorRegistrationSchema, type CollectorRegistrationInput } from "@/lib/validators/collector";
 import { EKITI_LGAS } from "@/lib/constants/lgas";
+import { WANTS_MORE_CUSTOMERS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -90,6 +91,10 @@ export function CollectorForm() {
     }
     data.service_areas.forEach((area) => formData.append("service_areas", area));
     data.waste_types.forEach((type) => formData.append("waste_types", type));
+    // Phase 2 optional market-research field: only append when answered.
+    if (data.wants_more_customers) {
+      formData.append("wants_more_customers", data.wants_more_customers);
+    }
 
     const result = await registerCollector(formData);
 
@@ -380,6 +385,36 @@ export function CollectorForm() {
         {errors.cac_number && (
           <p id="cac_number-error" role="alert" aria-live="polite" className="text-sm text-red-600 flex items-center gap-1">
             <span aria-hidden="true">⚠</span> {errors.cac_number.message}
+          </p>
+        )}
+      </div>
+
+      {/* Wants More Customers (Optional Phase 2 market-research field) */}
+      <div className="space-y-2">
+        <Label htmlFor="wants_more_customers">
+          Would you be interested in getting more customers through CleanCall?{" "}
+          <span className="text-muted-foreground text-xs">(optional)</span>
+        </Label>
+        <select
+          id="wants_more_customers"
+          aria-invalid={!!errors.wants_more_customers}
+          aria-describedby={errors.wants_more_customers ? "wants_more_customers-error" : undefined}
+          defaultValue=""
+          className={`flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ${
+            errors.wants_more_customers ? "border-red-500" : "border-input"
+          }`}
+          {...register("wants_more_customers")}
+        >
+          <option value="">Prefer not to say</option>
+          {WANTS_MORE_CUSTOMERS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        {errors.wants_more_customers && (
+          <p id="wants_more_customers-error" role="alert" aria-live="polite" className="text-sm text-red-600 flex items-center gap-1">
+            <span aria-hidden="true">⚠</span> {errors.wants_more_customers.message}
           </p>
         )}
       </div>

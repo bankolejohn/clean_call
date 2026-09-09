@@ -12,19 +12,19 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
 
 ## Tasks
 
-- [-] 1. Isolate Phase 2 work on a feature branch (HARD SAFETY GATE — do this first)
+- [x] 1. Isolate Phase 2 work on a feature branch (HARD SAFETY GATE — do this first)
   - Create the branch `feature/phase-2-admin-dashboard` from the current base and switch to it: `git checkout -b feature/phase-2-admin-dashboard`
   - Confirm the active branch is `feature/phase-2-admin-dashboard` (`git branch --show-current`) and confirm work is NOT on `main`
   - Do NOT commit any Phase 2 code to `main`; all subsequent tasks happen on this branch
   - _Requirements: 1.1, 17.2_
 
-- [ ] 2. Add charting dependency and Phase 2 constants (pure, DB-independent)
-  - [~] 2.1 Add and pin the Recharts dependency
+- [x] 2. Add charting dependency and Phase 2 constants (pure, DB-independent)
+  - [x] 2.1 Add and pin the Recharts dependency
     - Add `recharts` at a pinned/fixed version to `package.json` and install
     - Confirm it is the only new runtime dependency introduced by Phase 2
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 17.3_
 
-  - [~] 2.2 Create Phase 2 constants files and extend the barrel export
+  - [x] 2.2 Create Phase 2 constants files and extend the barrel export
     - Create `src/lib/constants/willingness-to-pay.ts` → `WILLINGNESS_TO_PAY` (`Yes`, `Maybe - Depends on price`, `No`)
     - Create `src/lib/constants/price-ranges.ts` → `PRICE_RANGES` (`Below ₦2,000`, `₦2,000–₦5,000`, `₦5,000–₦10,000`, `Above ₦10,000`, `Not sure`)
     - Create `src/lib/constants/existing-collection.ts` → `EXISTING_COLLECTION_OPTIONS` (`Yes`, `No`, `Sometimes`, `I manage it myself`)
@@ -35,8 +35,8 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Each uses the `as const` + derived type pattern; re-export each constant and its derived type from `src/lib/constants/index.ts`
     - _Requirements: 2.2, 2.3, 2.4, 2.5, 3.2, 4.2, 4.4_
 
-- [ ] 3. Extend types and add the terminology helper (pure)
-  - [~] 3.1 Extend TypeScript types in `src/types/index.ts`
+- [x] 3. Extend types and add the terminology helper (pure)
+  - [x] 3.1 Extend TypeScript types in `src/types/index.ts`
     - Add derived types: `WillingnessToPay`, `PriceRange`, `ExistingCollection`, `Satisfaction`, `CustomerStatus`, `ProviderStatus`, `WantsMoreCustomers`
     - Extend `CustomerRegistrationInput` with optional `willingness_to_pay`, `preferred_price_range`, `has_existing_collection`, `satisfaction_with_existing`
     - Extend `CollectorRegistrationInput` with optional `wants_more_customers`
@@ -45,74 +45,74 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Expand `DashboardStats` (totalUsers, customerCount, collectorCount, activeProviders, pendingProviders, newRegistrationsThisWeek, customersInterestedInPaid, customersWithExistingCollection, customersWithoutExistingCollection, recentRegistrations, lgaBreakdown)
     - _Requirements: 6.1, 6.2, 19.1, 19.3_
 
-  - [~] 3.2 Create the terminology display helper `src/lib/utils/terminology.ts`
+  - [x] 3.2 Create the terminology display helper `src/lib/utils/terminology.ts`
     - Add `TERMINOLOGY` map and `displayEntity(key)` returning "Waste Manager" / "Waste Managers" (display-only, no identifier or table rename)
     - _Requirements: 1.1, 10.1, 11.1_
 
-  - [ ]* 3.3 Write unit test for terminology mapping
+  - [x]* 3.3 Write unit test for terminology mapping
     - `tests/unit/terminology.test.ts`: `displayEntity("collector")` → "Waste Manager", `displayEntity("collectors")` → "Waste Managers"
     - _Requirements: 1.1, 10.1, 11.1_
 
-- [ ] 4. Extend validators and add status schemas (pure)
-  - [~] 4.1 Extend registration schemas with optional Phase 2 fields + satisfaction conditional transform
+- [x] 4. Extend validators and add status schemas (pure)
+  - [x] 4.1 Extend registration schemas with optional Phase 2 fields + satisfaction conditional transform
     - `src/lib/validators/customer.ts`: add `.optional()` `willingness_to_pay`, `preferred_price_range`, `has_existing_collection`, `satisfaction_with_existing` (Zod enums from the new constants); add a `.transform` that nulls out `satisfaction_with_existing` whenever `has_existing_collection !== "Yes"` (do not hard-fail)
     - `src/lib/validators/collector.ts`: add `.optional()` `wants_more_customers`
     - Do not alter any existing Phase 1 fields or required-field behavior
     - _Requirements: 2.1, 2.6, 2.7, 2.8, 4.1, 4.5, 1.5, 16.3_
 
-  - [~] 4.2 Create status-change schemas `src/lib/validators/status.ts`
+  - [x] 4.2 Create status-change schemas `src/lib/validators/status.ts`
     - `customerStatusSchema = z.object({ status: z.enum(CUSTOMER_STATUSES) })`
     - `providerStatusSchema = z.object({ status: z.enum(PROVIDER_STATUSES) })`
     - _Requirements: 3.2, 3.4, 4.4, 5.2, 16.3, 16.4_
 
-  - [ ]* 4.3 Write property test — backward-compatible registration stores nulls
+  - [x]* 4.3 Write property test — backward-compatible registration stores nulls
     - `tests/properties/phase2-registration.property.test.ts`
     - **Property 1: Backward-compatible registration stores nulls** (min 100 iterations)
     - Tag: `Feature: cleancall-phase-2-admin, Property 1`
     - **Validates: Requirements 1.5, 2.8, 4.5**
 
-  - [ ]* 4.4 Write property test — satisfaction is conditional on existing collection
+  - [x]* 4.4 Write property test — satisfaction is conditional on existing collection
     - `tests/properties/satisfaction-conditional.property.test.ts`
     - **Property 2: Satisfaction is conditional on existing collection** (min 100 iterations)
     - Tag: `Feature: cleancall-phase-2-admin, Property 2`
     - **Validates: Requirements 2.6, 2.7**
 
-  - [ ]* 4.5 Write property tests — status schemas accept iff in allowed set
+  - [x]* 4.5 Write property tests — status schemas accept iff in allowed set
     - `tests/properties/status-schemas.property.test.ts`
     - **Property 3: Customer status accepted iff in allowed set** (min 100 iterations)
     - **Property 4: Provider status accepted iff in allowed set** (min 100 iterations)
     - Tags: `Feature: cleancall-phase-2-admin, Property 3` / `Property 4`
     - **Validates: Requirements 3.2, 3.4, 4.4, 5.2, 16.3, 16.4**
 
-  - [ ]* 4.6 Write unit tests for validators
+  - [x]* 4.6 Write unit tests for validators
     - `tests/unit/validators-phase2.test.ts`: Phase-1-only input still validates; satisfaction conditional transform nulls satisfaction when `has_existing_collection !== "Yes"`; status schemas accept/reject representative values
     - _Requirements: 1.5, 2.6, 2.7, 3.4, 5.2_
 
-- [ ] 5. Extract pure helpers for stats, filtering, aggregation, display, lifecycle, and CSV
-  - [~] 5.1 Implement stat + aggregation pure helpers `src/lib/utils/stats.ts`
+- [x] 5. Extract pure helpers for stats, filtering, aggregation, display, lifecycle, and CSV
+  - [x] 5.1 Implement stat + aggregation pure helpers `src/lib/utils/stats.ts`
     - `computeStats(customers, collectors)` → expanded `DashboardStats` (totalUsers = customerCount + collectorCount; active/pending provider counts; interested-in-paid = willingness in {Yes, Maybe - Depends on price}; with/without existing collection partition excluding nulls; zero when no matches)
     - `groupByLga(...)`, and chart-grouping helpers (by willingness, by has-existing-collection, by role, by time bucket) returning group counts
     - `locationBreakdown(customers, collectors)` → all 16 canonical LGAs (including zeros); customer count per LGA; waste-manager coverage = collectors whose `service_areas` include the LGA
     - _Requirements: 6.1, 6.2, 6.4, 6.5, 6.6, 6.7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 12.1, 12.2, 12.3_
 
-  - [~] 5.2 Implement filter + lifecycle + display pure helpers
+  - [x] 5.2 Implement filter + lifecycle + display pure helpers
     - `filterCustomers(rows, filters)` / manager filter: apply all active conditions (search, LGA, category, willingness, has-existing-collection, status, wants-more-customers, date range) with AND logic; a null-valued field is excluded only when the filter specifies a non-null value
     - `mapLifecycleAction(action)` in `src/lib/utils/lifecycle.ts`: approve→Active, suspend→Suspended, verify→Verified, contact→Contacted
     - `displayField(value)` in `src/lib/utils/display.ts`: return value when present, "Not recorded" when null (never throw)
     - _Requirements: 5.3, 5.4, 5.5, 5.6, 8.2, 8.4, 8.5, 8.6, 10.2, 10.5, 13.3, 15.4, 15.5, 9.2, 11.2, 1.4_
 
-  - [~] 5.3 Extend CSV helper for Phase 2 fields
+  - [x] 5.3 Extend CSV helper for Phase 2 fields
     - Extend `src/lib/utils/csv.ts` generation to append Phase 2 columns (customers: willingness_to_pay, preferred_price_range, has_existing_collection, satisfaction_with_existing, status; collectors: wants_more_customers, status) after existing Phase 1 columns; null Phase 2 values render as empty cells
     - Keep existing Phase 1 column positions unchanged
     - _Requirements: 13.1, 13.2, 13.4_
 
-  - [ ]* 5.4 Write property test — lifecycle action mapping
+  - [x]* 5.4 Write property test — lifecycle action mapping
     - `tests/properties/lifecycle.property.test.ts`
     - **Property 5: Lifecycle actions map to fixed statuses** (min 100 iterations)
     - Tag: `Feature: cleancall-phase-2-admin, Property 5`
     - **Validates: Requirements 5.3, 5.4, 5.5, 5.6, 10.5**
 
-  - [ ]* 5.5 Write property tests — stat computation exactness
+  - [x]* 5.5 Write property tests — stat computation exactness
     - `tests/properties/stats-phase2.property.test.ts` (generators include null/zero-match cases)
     - **Property 6: Total users equals customers plus managers** (min 100 iterations)
     - **Property 7: Provider status counts are exact** (min 100 iterations)
@@ -122,7 +122,7 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Tags: `Feature: cleancall-phase-2-admin, Property 6`–`Property 10`
     - **Validates: Requirements 6.2, 6.4, 6.5, 6.6, 6.7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 15.4**
 
-  - [ ]* 5.6 Write property tests — filtering, pagination, display, location
+  - [x]* 5.6 Write property tests — filtering, pagination, display, location
     - `tests/properties/filter-display-location.property.test.ts` (generators include null-valued filter fields)
     - **Property 11: Filter soundness across all active conditions** (min 100 iterations)
     - **Property 12: Pagination partitions a sorted result without gaps or overlap** (min 100 iterations)
@@ -131,18 +131,18 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Tags: `Feature: cleancall-phase-2-admin, Property 11`–`Property 14`
     - **Validates: Requirements 8.2, 8.4, 8.5, 8.6, 10.2, 10.4, 13.3, 15.5, 8.3, 1.4, 9.2, 11.2, 12.1, 12.2, 12.3**
 
-  - [ ]* 5.7 Write property test — CSV round-trip with null→empty
+  - [x]* 5.7 Write property test — CSV round-trip with null→empty
     - `tests/properties/csv-phase2.property.test.ts`
     - **Property 15: CSV export round-trip preserves fields and maps nulls to empty** (min 100 iterations)
     - Tag: `Feature: cleancall-phase-2-admin, Property 15`
     - **Validates: Requirements 13.1, 13.2, 13.4**
 
-- [~] 6. Checkpoint - pure logic compiles and all pure-logic tests pass
+- [x] 6. Checkpoint - pure logic compiles and all pure-logic tests pass
   - Run `npx tsc --noEmit` and `npm run test`; ensure the full existing Phase 1 suite plus new pure-logic tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Author the Phase 2 database migration file (WRITE ONLY — do NOT apply to production here)
-  - [~] 7.1 Write `supabase/migrations/002_phase2_admin.sql` (additive-only)
+- [x] 7. Author the Phase 2 database migration file (WRITE ONLY — do NOT apply to production here)
+  - [x] 7.1 Write `supabase/migrations/002_phase2_admin.sql` (additive-only)
     - Add nullable columns to `customers`: `willingness_to_pay`, `preferred_price_range`, `has_existing_collection`, `satisfaction_with_existing` (each with a CHECK allowing NULL), `status TEXT CHECK(...) DEFAULT 'New'`, `updated_at TIMESTAMPTZ DEFAULT now()` — all via `ADD COLUMN IF NOT EXISTS`
     - Add nullable columns to `collectors`: `wants_more_customers` (CHECK allowing NULL), `status TEXT CHECK(...) DEFAULT 'Pending'`, `updated_at TIMESTAMPTZ DEFAULT now()`
     - Backfill existing (~99) rows: `status` → New/Pending where NULL; documented fallback `updated_at = created_at` for pre-existing rows (idempotent)
@@ -153,29 +153,29 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Contains ONLY additive statements — no DROP/RENAME/TRUNCATE/ALTER COLUMN TYPE/DELETE
     - _Requirements: 1.2, 1.3, 1.4, 1.6, 2.1, 3.1, 4.1, 4.3, 14.3, 16.1, 16.5, 19.1, 19.2, 19.3_
 
-  - [ ]* 7.2 Write migration schema integration checks (run against staging/branch DB)
+  - [x]* 7.2 Write migration schema integration checks (run against staging/branch DB)
     - `tests/integration/migration.test.ts`: `activity_log.action_type` is `TEXT`; no FK couples `customers`↔`collectors`; before/after `count(*)` on customers and collectors is preserved; sample existing field values unchanged
     - _Requirements: 1.6, 19.3, 19.4, 19.5_
 
-- [ ] 8. Implement the activity-log helper and wire status/export logging
-  - [~] 8.1 Implement `src/lib/utils/activity-log.ts`
+- [x] 8. Implement the activity-log helper and wire status/export logging
+  - [x] 8.1 Implement `src/lib/utils/activity-log.ts`
     - `recordActivity(client, actionType, description, metadata)` inserts into `activity_log` via a **service-role** client; failures are logged server-side and swallowed (never fail the primary action)
     - `ActivityActionType` union covers admin_login, customer_status_change, provider_approval, provider_suspension, provider_status_change, data_export
     - _Requirements: 14.1, 14.2, 14.3, 16.5_
 
-  - [ ]* 8.2 Write property test + unit test for activity entries
+  - [x]* 8.2 Write property test + unit test for activity entries
     - `tests/properties/activity-log.property.test.ts` — **Property 16: Activity entries are well-formed and ordered** (min 100 iterations); tag `Feature: cleancall-phase-2-admin, Property 16` — **Validates: Requirements 14.3, 14.4**
     - `tests/unit/activity-log.test.ts`: helper builds the correct entry shape per action_type and swallows insert errors
     - _Requirements: 14.1, 14.2, 14.3_
 
-- [ ] 9. Extend registration forms and server actions (wired to staging DB)
-  - [~] 9.1 Extend registration forms with optional Phase 2 fields
+- [x] 9. Extend registration forms and server actions (wired to staging DB)
+  - [x] 9.1 Extend registration forms with optional Phase 2 fields
     - `src/components/forms/customer-form.tsx`: add optional selects for willingness_to_pay, preferred_price_range, has_existing_collection, and conditionally-enabled satisfaction_with_existing (enabled only when has_existing_collection === "Yes"); present price range explicitly as a market-research question, not advertised prices
     - `src/components/forms/collector-form.tsx`: add optional wants_more_customers select
     - Reuse existing RHF + zodResolver + ARIA patterns; do not change existing required-field behavior
     - _Requirements: 2.1, 2.6, 2.9, 4.1, 17.1, 17.2_
 
-  - [~] 9.2 Extend register-customer / register-collector server actions
+  - [x] 9.2 Extend register-customer / register-collector server actions
     - Extend `src/lib/actions/register-customer.ts` and `register-collector.ts` to parse/sanitize/persist the new optional fields; omitted fields store null and registration still succeeds
     - _Requirements: 2.8, 4.5, 1.5, 3.1, 4.3_
 
