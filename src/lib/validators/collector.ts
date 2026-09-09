@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { WANTS_MORE_CUSTOMERS } from '@/lib/constants/wants-more-customers';
 
 /**
  * Valid Ekiti State Local Government Areas
@@ -83,6 +84,8 @@ export const collectorRegistrationSchema = z.object({
     .max(20, 'CAC number must be 20 characters or less')
     .optional()
     .or(z.literal('')),
+  // Phase 2 market-research field — optional so Phase 1 submissions still validate.
+  wants_more_customers: z.enum(WANTS_MORE_CUSTOMERS).optional(),
 });
 
 export type CollectorRegistrationInput = z.infer<typeof collectorRegistrationSchema>;

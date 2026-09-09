@@ -135,11 +135,24 @@ export async function GET() {
     collectorCount: collectorLgaCounts[lga] || 0,
   }));
 
+  const customerTotal = customerCount || 0;
+  const collectorTotal = collectorCount || 0;
+
   const stats: DashboardStats = {
-    customerCount: customerCount || 0,
-    collectorCount: collectorCount || 0,
+    customerCount: customerTotal,
+    collectorCount: collectorTotal,
     recentRegistrations: mergedRecent,
     lgaBreakdown,
+    // Phase 2 fields: the expanded metrics are served by /api/admin/dashboard.
+    // This retained Phase 1 route reports the counts it already computes and
+    // zeroes the Phase 2-only metrics to satisfy the expanded type.
+    totalUsers: customerTotal + collectorTotal,
+    activeProviders: 0,
+    pendingProviders: 0,
+    newRegistrationsThisWeek: 0,
+    customersInterestedInPaid: 0,
+    customersWithExistingCollection: 0,
+    customersWithoutExistingCollection: 0,
   };
 
   return NextResponse.json(stats);

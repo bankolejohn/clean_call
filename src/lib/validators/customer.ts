@@ -1,4 +1,8 @@
 import { z } from 'zod';
+import { WILLINGNESS_TO_PAY } from '@/lib/constants/willingness-to-pay';
+import { PRICE_RANGES } from '@/lib/constants/price-ranges';
+import { EXISTING_COLLECTION_OPTIONS } from '@/lib/constants/existing-collection';
+import { SATISFACTION_OPTIONS } from '@/lib/constants/satisfaction';
 
 /**
  * Valid Ekiti State Local Government Areas
@@ -88,6 +92,20 @@ export const customerRegistrationSchema = z.object({
   collection_frequency: z.enum(COLLECTION_FREQUENCIES, {
     errorMap: () => ({ message: 'Please select a valid collection frequency' }),
   }),
-});
+  // Phase 2 market-research fields — all optional so Phase 1 submissions still validate.
+  willingness_to_pay: z.enum(WILLINGNESS_TO_PAY).optional(),
+  preferred_price_range: z.enum(PRICE_RANGES).optional(),
+  has_existing_collection: z.enum(EXISTING_COLLECTION_OPTIONS).optional(),
+  satisfaction_with_existing: z.enum(SATISFACTION_OPTIONS).optional(),
+}).transform((data) => ({
+  // satisfaction is only meaningful when a customer already has a collector.
+  // Rather than hard-failing this market-research form, drop the value whenever
+  // has_existing_collection is anything other than exactly "Yes".
+  ...data,
+  satisfaction_with_existing:
+    data.has_existing_collection === 'Yes'
+      ? data.satisfaction_with_existing
+      : undefined,
+}));
 
 export type CustomerRegistrationInput = z.infer<typeof customerRegistrationSchema>;

@@ -4,6 +4,7 @@ import { EKITI_LGAS } from '@/lib/constants/lgas';
 import { CUSTOMER_CATEGORIES } from '@/lib/constants/categories';
 import { DISPOSAL_METHODS } from '@/lib/constants/disposal-methods';
 import { COLLECTION_FREQUENCIES } from '@/lib/constants/frequencies';
+import { CUSTOMER_STATUSES } from '@/lib/constants/customer-status';
 import type { Customer } from '@/types';
 
 /**
@@ -113,6 +114,8 @@ const customerArb: fc.Arbitrary<Customer> = fc.record({
   disposal_method: fc.constantFrom(...DISPOSAL_METHODS),
   collection_frequency: fc.constantFrom(...COLLECTION_FREQUENCIES),
   created_at: fc.date({ min: new Date('2024-01-01'), max: new Date('2025-12-31') }).map((d) => d.toISOString()),
+  status: fc.constantFrom(...CUSTOMER_STATUSES),
+  updated_at: fc.date({ min: new Date('2024-01-01'), max: new Date('2025-12-31') }).map((d) => d.toISOString()),
 });
 
 /** Generate a list of customer records */
