@@ -179,26 +179,26 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - Extend `src/lib/actions/register-customer.ts` and `register-collector.ts` to parse/sanitize/persist the new optional fields; omitted fields store null and registration still succeeds
     - _Requirements: 2.8, 4.5, 1.5, 3.1, 4.3_
 
-  - [ ]* 9.3 Write unit tests for form rendering
+  - [x]* 9.3 Write unit tests for form rendering
     - `tests/unit/forms-phase2.test.ts`: forms render new optional fields with labels/ARIA; satisfaction field enabled only when has_existing_collection === "Yes"
     - _Requirements: 2.1, 2.6, 4.1_
 
-- [ ] 10. Extend and add admin API routes (wired to staging DB)
-  - [~] 10.1 Extend GET list routes with Phase 2 filters
+- [x] 10. Extend and add admin API routes (wired to staging DB)
+  - [x] 10.1 Extend GET list routes with Phase 2 filters
     - `src/app/api/admin/customers/route.ts`: add filters willingness_to_pay, has_existing_collection, status, dateFrom, dateTo (applied only when the param is present)
     - `src/app/api/admin/collectors/route.ts`: add filters status, wants_more_customers
     - Preserve existing search/sort/pagination and the `auth.getUser()` → 401 pattern
     - _Requirements: 8.2, 8.4, 8.5, 8.6, 10.2, 15.4, 15.5, 16.2_
 
-  - [~] 10.2 Add customer detail GET + status PATCH route
+  - [x] 10.2 Add customer detail GET + status PATCH route
     - `src/app/api/admin/customers/[id]/route.ts`: GET single (404/not-found for unknown id); PATCH validates with `customerStatusSchema` (invalid → 400 + fieldErrors + no mutation), updates status, records `customer_status_change` activity
     - _Requirements: 3.3, 3.4, 3.5, 9.1, 9.4, 16.2, 16.3, 16.4_
 
-  - [~] 10.3 Add waste-manager detail GET + status/lifecycle PATCH route
+  - [x] 10.3 Add waste-manager detail GET + status/lifecycle PATCH route
     - `src/app/api/admin/collectors/[id]/route.ts`: GET single (unknown id → not-found); PATCH accepts raw `status` (validated via `providerStatusSchema`) or a named `action` (approve/suspend/verify/contact) mapped server-side; records the matching activity entry (approval/suspension/status change)
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 10.5, 11.1, 11.4, 16.2, 16.3, 16.4_
 
-  - [~] 10.4 Add dashboard / analytics / locations / activity-log routes
+  - [x] 10.4 Add dashboard / analytics / locations / activity-log routes
     - `src/app/api/admin/dashboard/route.ts`: expanded stats via `computeStats` (all query-derived, no hardcoded values)
     - `src/app/api/admin/analytics/route.ts`: chart datasets (query-derived)
     - `src/app/api/admin/locations/route.ts`: LGA breakdown for all 16 LGAs including zeros + service-area coverage
@@ -206,15 +206,15 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
     - All repeat the `auth.getUser()` → 401 guard
     - _Requirements: 6.1, 6.3, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 12.1, 12.2, 12.3, 12.4, 14.4, 16.2, 16.5_
 
-  - [~] 10.5 Extend export routes with Phase 2 fields + export logging
+  - [x] 10.5 Extend export routes with Phase 2 fields + export logging
     - `src/app/api/admin/export/customers/route.ts` and `export/collectors/route.ts`: append Phase 2 columns, respect active filters, empty cells for null values, record a `data_export` activity entry
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 16.2_
 
-  - [ ]* 10.6 Write integration tests for API routes (against staging/seeded data)
+  - [x]* 10.6 Write integration tests for API routes (against staging/seeded data)
     - `tests/integration/api-phase2.test.ts`: 401 on unauthenticated for each new/extended route; detail GET + not-found; PATCH valid→200 (persisted, updated_at advanced) / invalid→400 (row unchanged); lifecycle actions set status + write activity entry; extended + combined filters return only matching rows; dashboard/analytics numbers match seeded counts (proving query-derived); export includes new fields, respects filters, empties nulls, writes `data_export` entry; activity-log ordered DESC + login writes `admin_login`; unauthenticated `/activity-log`→401 and non-service_role INSERT rejected
     - _Requirements: 3.3, 3.4, 5.1–5.6, 6.3, 7.7, 8.2–8.6, 9.4, 10.2, 11.4, 13.1–13.5, 14.1, 14.2, 14.4, 16.2, 16.5, 19.2_
 
-- [~] 11. Checkpoint - types compile, application code + integration tests pass on staging
+- [x] 11. Checkpoint - types compile, application code + integration tests pass on staging
   - Run `npx tsc --noEmit` and `npm run test` (staging/branch DB configured); ensure Phase 1 suite still passes
   - Ensure all tests pass, ask the user if questions arise.
 

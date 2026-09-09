@@ -19,6 +19,8 @@ export async function GET(request: NextRequest) {
   const pageSize = Math.max(1, Math.min(100, parseInt(searchParams.get("pageSize") || "20", 10)));
   const search = searchParams.get("search") || "";
   const lga = searchParams.get("lga") || "";
+  const status = searchParams.get("status") || "";
+  const wantsMoreCustomers = searchParams.get("wants_more_customers") || "";
 
   // Build query
   let query = supabase
@@ -36,6 +38,16 @@ export async function GET(request: NextRequest) {
   // Apply LGA filter (matches service_areas array contains)
   if (lga) {
     query = query.contains("service_areas", [lga]);
+  }
+
+  // Apply status filter (exact match)
+  if (status) {
+    query = query.eq("status", status);
+  }
+
+  // Apply wants-more-customers filter (exact match)
+  if (wantsMoreCustomers) {
+    query = query.eq("wants_more_customers", wantsMoreCustomers);
   }
 
   // Apply ordering and pagination

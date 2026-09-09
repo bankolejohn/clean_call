@@ -294,6 +294,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959165710
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961462517
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961630624
       }
     ],
     "10.2 Add customer detail GET + status PATCH route": [
@@ -301,6 +311,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959165928
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961463450
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961631570
       }
     ],
     "10.3 Add waste-manager detail GET + status/lifecycle PATCH route": [
@@ -308,6 +328,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959166125
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961464938
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961633223
       }
     ],
     "10.4 Add dashboard / analytics / locations / activity-log routes": [
@@ -315,6 +345,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959166283
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961466130
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961634529
       }
     ],
     "10.5 Extend export routes with Phase 2 fields + export logging": [
@@ -322,6 +362,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959166481
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961467059
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961636204
       }
     ],
     "11. Checkpoint - types compile, application code + integration tests pass on staging": [
@@ -329,6 +379,16 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788959167194
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962071118
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962269906
       }
     ],
     "12.1 Implement chart components in `src/components/admin/charts/`": [
@@ -615,6 +675,37 @@
         "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
         "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
         "timestamp": 1788961449785
+      }
+    ],
+    "10. Extend and add admin API routes (wired to staging DB)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961636785
+      }
+    ],
+    "9.3 Write unit tests for form rendering": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961646175
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962070187
+      }
+    ],
+    "10.6 Write integration tests for API routes (against staging/seeded data)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961647375
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962070452
       }
     ]
   }

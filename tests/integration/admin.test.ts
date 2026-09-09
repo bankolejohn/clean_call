@@ -520,10 +520,14 @@ describe("CSV Export", () => {
     const csvContent = await response.text();
     const lines = csvContent.split("\n");
 
-    // First line should be headers
-    const expectedHeaders =
+    // First line should be headers. Phase 1 columns retain their exact leading
+    // positions; Phase 2 columns are appended at the end (Requirements 13.1, 13.2).
+    const phase1Headers =
       "id,full_name,phone,email,address,lga,category,disposal_method,collection_frequency,created_at";
-    expect(lines[0]).toBe(expectedHeaders);
+    expect(lines[0].startsWith(phase1Headers)).toBe(true);
+    expect(lines[0]).toBe(
+      `${phase1Headers},willingness_to_pay,preferred_price_range,has_existing_collection,satisfaction_with_existing,status,updated_at`
+    );
 
     // Second line should have data
     expect(lines.length).toBe(2);
