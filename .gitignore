@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local db credentials + backups (never commit)
+.db.local
+*.dump.sql
+backups/

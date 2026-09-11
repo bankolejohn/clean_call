@@ -21,6 +21,12 @@ export async function GET(request: NextRequest) {
   const search = searchParams.get("search") || "";
   const lga = searchParams.get("lga") || "";
   const category = searchParams.get("category") || "";
+  const willingnessToPay = searchParams.get("willingness_to_pay") || "";
+  const hasExistingCollection = searchParams.get("has_existing_collection") || "";
+  const status = searchParams.get("status") || "";
+  const dateFrom = searchParams.get("dateFrom") || "";
+  const dateTo = searchParams.get("dateTo") || "";
+  const interested = searchParams.get("interested") || "";
 
   // Build query
   let query = supabase
@@ -43,6 +49,36 @@ export async function GET(request: NextRequest) {
   // Apply category filter (exact match)
   if (category) {
     query = query.eq("category", category);
+  }
+
+  // Apply "Interested in Service" sub-view filter (willingness in {Yes, Maybe})
+  // (Requirement 15.4). Handled at the API layer via .in(...).
+  if (interested === "true") {
+    query = query.in("willingness_to_pay", ["Yes", "Maybe - Depends on price"]);
+  }
+
+  // Apply willingness-to-pay filter (exact match)
+  if (willingnessToPay) {
+    query = query.eq("willingness_to_pay", willingnessToPay);
+  }
+
+  // Apply has-existing-collection filter (exact match)
+  if (hasExistingCollection) {
+    query = query.eq("has_existing_collection", hasExistingCollection);
+  }
+
+  // Apply status filter (exact match)
+  if (status) {
+    query = query.eq("status", status);
+  }
+
+  // Apply registration-date range filters
+  if (dateFrom) {
+    query = query.gte("created_at", dateFrom);
+  }
+
+  if (dateTo) {
+    query = query.lte("created_at", dateTo);
   }
 
   // Apply ordering

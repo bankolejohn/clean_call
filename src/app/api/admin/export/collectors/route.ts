@@ -1,22 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { generateCSV, getCSVFilename } from "@/lib/utils/csv";
-
-const COLLECTOR_CSV_HEADERS = [
-  "id",
-  "business_name",
-  "contact_person",
-  "phone",
-  "email",
-  "cac_number",
-  "business_address",
-  "service_areas",
-  "waste_types",
-  "staff_count",
-  "vehicle_count",
-  "years_in_operation",
-  "created_at",
-];
+import { createServiceClient } from "@/lib/supabase/service";
+import { generateCSV, getCSVFilename, COLLECTOR_CSV_HEADERS } from "@/lib/utils/csv";
+import { recordActivity } from "@/lib/utils/activity-log";
 
 const MAX_EXPORT_RECORDS = 10000;
 
@@ -35,12 +21,17 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const search = searchParams.get("search") || "";
   const lga = searchParams.get("lga") || "";
+  const status = searchParams.get("status") || "";
+  const wantsMoreCustomers = searchParams.get("wants_more_customers") || "";
 
   try {
-    // Build query with same filter logic as /api/admin/collectors
+    // Build query with same filter logic as /api/admin/collectors, fetching
+    // Phase 1 + Phase 2 columns so all canonical CSV headers are populated.
     let query = supabase
       .from("collectors")
-      .select("id, business_name, contact_person, phone, email, cac_number, business_address, service_areas, waste_types, staff_count, vehicle_count, years_in_operation, created_at");
+      .select(
+        "id, business_name, contact_person, phone, email, cac_number, business_address, service_areas, waste_types, staff_count, vehicle_count, years_in_operation, created_at, wants_more_customers, status, updated_at"
+      );
 
     // Apply search filter (case-insensitive, minimum 2 characters)
     if (search.length >= 2) {
@@ -53,6 +44,16 @@ export async function GET(request: NextRequest) {
     // Apply LGA filter (matches service_areas array contains)
     if (lga) {
       query = query.contains("service_areas", [lga]);
+    }
+
+    // Apply Phase 2 status filter (exact match)
+    if (status) {
+      query = query.eq("status", status);
+    }
+
+    // Apply Phase 2 wants-more-customers filter (exact match)
+    if (wantsMoreCustomers) {
+      query = query.eq("wants_more_customers", wantsMoreCustomers);
     }
 
     // Order and limit
@@ -80,6 +81,24 @@ export async function GET(request: NextRequest) {
 
     const csv = generateCSV(COLLECTOR_CSV_HEADERS, rows);
     const filename = getCSVFilename("collectors");
+
+    // Best-effort audit log of the export via a service-role client.
+    try {
+      const serviceClient = createServiceClient();
+      await recordActivity(serviceClient, "data_export", "Exported collectors CSV", {
+        view: "collectors",
+        rowCount: rows.length,
+        filters: {
+          search,
+          lga,
+          status,
+          wants_more_customers: wantsMoreCustomers,
+        },
+      });
+    } catch {
+      // recordActivity is already best-effort; guard client creation too so a
+      // logging failure never blocks the export.
+    }
 
     return new Response(csv, {
       status: 200,

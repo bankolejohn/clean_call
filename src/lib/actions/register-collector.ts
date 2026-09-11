@@ -6,6 +6,13 @@ import { createClient } from "@/lib/supabase/server";
 import type { ActionResult } from "@/types";
 
 export async function registerCollector(formData: FormData): Promise<ActionResult> {
+  // Reads an optional field: returns the string only when it is present and
+  // non-empty, otherwise undefined so the optional Zod enum validates cleanly.
+  const optional = (key: string): string | undefined => {
+    const value = formData.get(key);
+    return typeof value === "string" && value.length > 0 ? value : undefined;
+  };
+
   // Extract scalar fields
   const rawData = {
     business_name: formData.get("business_name") as string || "",
@@ -20,6 +27,8 @@ export async function registerCollector(formData: FormData): Promise<ActionResul
     // Multi-value fields: FormData stores multiple values under the same key
     service_areas: formData.getAll("service_areas") as string[],
     waste_types: formData.getAll("waste_types") as string[],
+    // Phase 2 market-research field — optional, only included when present.
+    wants_more_customers: optional("wants_more_customers"),
   };
 
   // Validate with Zod
@@ -55,6 +64,10 @@ export async function registerCollector(formData: FormData): Promise<ActionResul
     vehicle_count: sanitizedData.vehicle_count,
     years_in_operation: sanitizedData.years_in_operation,
     cac_number: sanitizedData.cac_number || null,
+    // Phase 2 market-research field. Insert the validated enum value from
+    // parseResult.data (not the sanitized copy) so the exact string satisfies
+    // the DB CHECK constraint. Omitted → null so Phase 1 submissions still succeed.
+    wants_more_customers: parseResult.data.wants_more_customers ?? null,
   };
 
   // Insert into database

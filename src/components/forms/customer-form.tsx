@@ -14,6 +14,10 @@ import {
   CUSTOMER_CATEGORIES,
   DISPOSAL_METHODS,
   COLLECTION_FREQUENCIES,
+  WILLINGNESS_TO_PAY,
+  PRICE_RANGES,
+  EXISTING_COLLECTION_OPTIONS,
+  SATISFACTION_OPTIONS,
 } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +32,7 @@ export function CustomerForm() {
     register,
     handleSubmit,
     setError,
+    watch,
     formState: { errors },
   } = useForm<CustomerRegistrationInput>({
     resolver: zodResolver(customerRegistrationSchema),
@@ -54,6 +59,27 @@ export function CustomerForm() {
       formData.append("category", data.category);
       formData.append("disposal_method", data.disposal_method);
       formData.append("collection_frequency", data.collection_frequency);
+
+      // Phase 2 optional market-research fields: only append when answered.
+      if (data.willingness_to_pay) {
+        formData.append("willingness_to_pay", data.willingness_to_pay);
+      }
+      if (data.preferred_price_range) {
+        formData.append("preferred_price_range", data.preferred_price_range);
+      }
+      if (data.has_existing_collection) {
+        formData.append("has_existing_collection", data.has_existing_collection);
+      }
+      // satisfaction is only meaningful when the customer has an existing collector.
+      if (
+        data.has_existing_collection === "Yes" &&
+        data.satisfaction_with_existing
+      ) {
+        formData.append(
+          "satisfaction_with_existing",
+          data.satisfaction_with_existing
+        );
+      }
 
       const result = await registerCustomer(formData);
 
@@ -350,6 +376,173 @@ export function CustomerForm() {
           </p>
         )}
       </div>
+
+      {/* Optional Phase 2 market-research section */}
+      <fieldset className="space-y-6 rounded-md border border-input p-4">
+        <legend className="px-1 text-sm font-medium">
+          Optional: Help us understand demand
+        </legend>
+        <p className="-mt-2 text-xs text-muted-foreground">
+          These questions are optional and for market research only. You can
+          leave any of them blank.
+        </p>
+
+        {/* Willingness to pay */}
+        <div className="space-y-2">
+          <Label htmlFor="willingness_to_pay">
+            Would you be willing to pay for a reliable waste collection service?
+          </Label>
+          <select
+            id="willingness_to_pay"
+            aria-invalid={!!errors.willingness_to_pay}
+            aria-describedby={
+              errors.willingness_to_pay ? "willingness_to_pay-error" : undefined
+            }
+            className={`flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ${
+              errors.willingness_to_pay ? "border-red-500" : "border-input"
+            }`}
+            defaultValue=""
+            {...register("willingness_to_pay")}
+          >
+            <option value="">Prefer not to say</option>
+            {WILLINGNESS_TO_PAY.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {errors.willingness_to_pay && (
+            <p
+              id="willingness_to_pay-error"
+              role="alert"
+              aria-live="polite"
+              className="text-sm text-red-600"
+            >
+              {errors.willingness_to_pay.message}
+            </p>
+          )}
+        </div>
+
+        {/* Preferred price range */}
+        <div className="space-y-2">
+          <Label htmlFor="preferred_price_range">
+            What would you consider a reasonable monthly amount? (optional)
+          </Label>
+          <select
+            id="preferred_price_range"
+            aria-invalid={!!errors.preferred_price_range}
+            aria-describedby="preferred_price_range-help"
+            className={`flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ${
+              errors.preferred_price_range ? "border-red-500" : "border-input"
+            }`}
+            defaultValue=""
+            {...register("preferred_price_range")}
+          >
+            <option value="">Prefer not to say</option>
+            {PRICE_RANGES.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          <p
+            id="preferred_price_range-help"
+            className="text-xs text-muted-foreground"
+          >
+            This is a research question to gauge demand, not a quoted price.
+          </p>
+          {errors.preferred_price_range && (
+            <p
+              id="preferred_price_range-error"
+              role="alert"
+              aria-live="polite"
+              className="text-sm text-red-600"
+            >
+              {errors.preferred_price_range.message}
+            </p>
+          )}
+        </div>
+
+        {/* Existing collection */}
+        <div className="space-y-2">
+          <Label htmlFor="has_existing_collection">
+            Do you currently have someone/company collecting your waste?
+          </Label>
+          <select
+            id="has_existing_collection"
+            aria-invalid={!!errors.has_existing_collection}
+            aria-describedby={
+              errors.has_existing_collection
+                ? "has_existing_collection-error"
+                : undefined
+            }
+            className={`flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ${
+              errors.has_existing_collection ? "border-red-500" : "border-input"
+            }`}
+            defaultValue=""
+            {...register("has_existing_collection")}
+          >
+            <option value="">Prefer not to say</option>
+            {EXISTING_COLLECTION_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {errors.has_existing_collection && (
+            <p
+              id="has_existing_collection-error"
+              role="alert"
+              aria-live="polite"
+              className="text-sm text-red-600"
+            >
+              {errors.has_existing_collection.message}
+            </p>
+          )}
+        </div>
+
+        {/* Satisfaction — only shown when an existing collection arrangement exists */}
+        {watch("has_existing_collection") === "Yes" && (
+          <div className="space-y-2">
+            <Label htmlFor="satisfaction_with_existing">
+              Are you satisfied with your current waste collection service?
+            </Label>
+            <select
+              id="satisfaction_with_existing"
+              aria-invalid={!!errors.satisfaction_with_existing}
+              aria-describedby={
+                errors.satisfaction_with_existing
+                  ? "satisfaction_with_existing-error"
+                  : undefined
+              }
+              className={`flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm ${
+                errors.satisfaction_with_existing
+                  ? "border-red-500"
+                  : "border-input"
+              }`}
+              defaultValue=""
+              {...register("satisfaction_with_existing")}
+            >
+              <option value="">Prefer not to say</option>
+              {SATISFACTION_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            {errors.satisfaction_with_existing && (
+              <p
+                id="satisfaction_with_existing-error"
+                role="alert"
+                aria-live="polite"
+                className="text-sm text-red-600"
+              >
+                {errors.satisfaction_with_existing.message}
+              </p>
+            )}
+          </div>
+        )}
+      </fieldset>
 
       <Button
         type="submit"

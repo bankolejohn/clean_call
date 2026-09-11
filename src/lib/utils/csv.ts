@@ -41,6 +41,66 @@ export function generateCSV(headers: string[], rows: Record<string, unknown>[]):
 }
 
 /**
+ * Canonical customer CSV column headers (single source of truth shared by the
+ * export route and tests).
+ *
+ * The Phase 1 columns MUST retain their exact positions to keep existing CSV
+ * output byte-identical; the Phase 2 columns are appended at the end only.
+ * Null/undefined Phase 2 values render as empty cells via {@link generateCSV}
+ * (see {@link escapeCSVField}). (Requirements 13.1, 13.2, 13.4)
+ */
+export const CUSTOMER_CSV_HEADERS: string[] = [
+  // Phase 1 columns (order matches /api/admin/export/customers)
+  "id",
+  "full_name",
+  "phone",
+  "email",
+  "address",
+  "lga",
+  "category",
+  "disposal_method",
+  "collection_frequency",
+  "created_at",
+  // Phase 2 columns (appended)
+  "willingness_to_pay",
+  "preferred_price_range",
+  "has_existing_collection",
+  "satisfaction_with_existing",
+  "status",
+  "updated_at",
+];
+
+/**
+ * Canonical collector CSV column headers (single source of truth shared by the
+ * export route and tests).
+ *
+ * The Phase 1 columns MUST retain their exact positions to keep existing CSV
+ * output byte-identical; the Phase 2 columns are appended at the end only.
+ * Null/undefined Phase 2 values render as empty cells via {@link generateCSV}
+ * (see {@link escapeCSVField}). (Requirements 13.1, 13.2, 13.4)
+ */
+export const COLLECTOR_CSV_HEADERS: string[] = [
+  // Phase 1 columns (order matches /api/admin/export/collectors)
+  "id",
+  "business_name",
+  "contact_person",
+  "phone",
+  "email",
+  "cac_number",
+  "business_address",
+  "service_areas",
+  "waste_types",
+  "staff_count",
+  "vehicle_count",
+  "years_in_operation",
+  "created_at",
+  // Phase 2 columns (appended)
+  "wants_more_customers",
+  "status",
+  "updated_at",
+];
+
+/**
  * Generates a CSV filename following the pattern: {view}_export_{YYYY-MM-DD}.csv
  * 
  * @param view - The type of data being exported ('customers' or 'collectors')

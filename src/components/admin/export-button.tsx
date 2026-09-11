@@ -8,11 +8,32 @@ interface ExportButtonProps {
   search?: string;
   lga?: string;
   category?: string;
+  // --- Phase 2 customer filters ---
+  willingnessToPay?: string;
+  hasExistingCollection?: string;
+  status?: string;
+  dateFrom?: string;
+  dateTo?: string;
+  interested?: string;
+  // --- Phase 2 waste-manager (collector) filters ---
+  wantsMoreCustomers?: string;
 }
 
 const EXPORT_TIMEOUT_MS = 30000;
 
-export function ExportButton({ view, search, lga, category }: ExportButtonProps) {
+export function ExportButton({
+  view,
+  search,
+  lga,
+  category,
+  willingnessToPay,
+  hasExistingCollection,
+  status,
+  dateFrom,
+  dateTo,
+  interested,
+  wantsMoreCustomers,
+}: ExportButtonProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -28,6 +49,20 @@ export function ExportButton({ view, search, lga, category }: ExportButtonProps)
       if (search) params.set("search", search);
       if (lga && lga !== "all") params.set("lga", lga);
       if (category && category !== "all") params.set("category", category);
+
+      // Phase 2 customer filters
+      if (willingnessToPay && willingnessToPay !== "all")
+        params.set("willingness_to_pay", willingnessToPay);
+      if (hasExistingCollection && hasExistingCollection !== "all")
+        params.set("has_existing_collection", hasExistingCollection);
+      if (status && status !== "all") params.set("status", status);
+      if (dateFrom) params.set("dateFrom", dateFrom);
+      if (dateTo) params.set("dateTo", dateTo);
+      if (interested) params.set("interested", interested);
+
+      // Phase 2 waste-manager filters
+      if (wantsMoreCustomers && wantsMoreCustomers !== "all")
+        params.set("wants_more_customers", wantsMoreCustomers);
 
       const url = `/api/admin/export/${view}?${params.toString()}`;
       const response = await fetch(url, { signal: controller.signal });

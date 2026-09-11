@@ -1,0 +1,810 @@
+{
+  "pbtResults": {
+    "4.3 Write property test — backward-compatible registration stores nulls": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960277083
+    },
+    "5.4 Write property test — lifecycle action mapping": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960286298
+    },
+    "4.5 Write property tests — status schemas accept iff in allowed set": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960307238
+    },
+    "4.4 Write property test — satisfaction is conditional on existing collection": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960423352
+    },
+    "5.7 Write property test — CSV round-trip with null→empty": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960592757
+    },
+    "5.5 Write property tests — stat computation exactness": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960644221
+    },
+    "5.6 Write property tests — filtering, pagination, display, location": {
+      "status": "passed",
+      "lastRunTimestamp": 1788960664186
+    },
+    "8.2 Write property test + unit test for activity entries": {
+      "status": "passed",
+      "lastRunTimestamp": 1788961230225
+    }
+  },
+  "executionHistory": {
+    "1. Isolate Phase 2 work on a feature branch (HARD SAFETY GATE — do this first)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959159410
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959188683
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959239315
+      }
+    ],
+    "2.1 Add and pin the Recharts dependency": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959160781
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959247465
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959464984
+      }
+    ],
+    "2.2 Create Phase 2 constants files and extend the barrel export": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959161084
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959248493
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959466527
+      }
+    ],
+    "3.1 Extend TypeScript types in `src/types/index.ts`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959161338
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959474367
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959679700
+      }
+    ],
+    "3.2 Create the terminology display helper `src/lib/utils/terminology.ts`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959161677
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959475635
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959678509
+      }
+    ],
+    "4.1 Extend registration schemas with optional Phase 2 fields + satisfaction conditional transform": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959162513
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959691502
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959859193
+      }
+    ],
+    "4.2 Create status-change schemas `src/lib/validators/status.ts`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959162742
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959690517
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959857809
+      }
+    ],
+    "5.1 Implement stat + aggregation pure helpers `src/lib/utils/stats.ts`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959162984
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959871473
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960146846
+      }
+    ],
+    "5.2 Implement filter + lifecycle + display pure helpers": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959163349
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959873673
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960145774
+      }
+    ],
+    "5.3 Extend CSV helper for Phase 2 fields": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959163656
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959873885
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960144859
+      }
+    ],
+    "6. Checkpoint - pure logic compiles and all pure-logic tests pass": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959164043
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960698571
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960780477
+      }
+    ],
+    "7.1 Write `supabase/migrations/002_phase2_admin.sql` (additive-only)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959164358
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960791234
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960947312
+      }
+    ],
+    "8.1 Implement `src/lib/utils/activity-log.ts`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959164547
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960957200
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961109390
+      }
+    ],
+    "9.1 Extend registration forms with optional Phase 2 fields": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959165213
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961121550
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961448011
+      }
+    ],
+    "9.2 Extend register-customer / register-collector server actions": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959165372
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961120516
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961449484
+      }
+    ],
+    "10.1 Extend GET list routes with Phase 2 filters": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959165710
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961462517
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961630624
+      }
+    ],
+    "10.2 Add customer detail GET + status PATCH route": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959165928
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961463450
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961631570
+      }
+    ],
+    "10.3 Add waste-manager detail GET + status/lifecycle PATCH route": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959166125
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961464938
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961633223
+      }
+    ],
+    "10.4 Add dashboard / analytics / locations / activity-log routes": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959166283
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961466130
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961634529
+      }
+    ],
+    "10.5 Extend export routes with Phase 2 fields + export logging": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959166481
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961467059
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961636204
+      }
+    ],
+    "11. Checkpoint - types compile, application code + integration tests pass on staging": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959167194
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962071118
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962269906
+      }
+    ],
+    "12.1 Implement chart components in `src/components/admin/charts/`": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959167357
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962282932
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962467666
+      }
+    ],
+    "13.1 Expand the dashboard page": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959167518
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962973357
+      }
+    ],
+    "13.2 Build shared status-control component": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959167726
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962782491
+      }
+    ],
+    "13.3 Build customer detail page": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959167904
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962974295
+      }
+    ],
+    "13.4 Build waste-manager detail page": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959168687
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962975038
+      }
+    ],
+    "13.5 Build locations and analytics pages": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959168966
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962976490
+      }
+    ],
+    "13.6 Build activity-log page": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959169127
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962780142
+      }
+    ],
+    "13.7 Extend registration tables, filter bar, and export button props": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959169282
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962780892
+      }
+    ],
+    "13.8 Extend admin navigation": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959169690
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962783248
+      }
+    ],
+    "14. Regression checkpoint - Phase 1 stays green, full Phase 2 suite passes": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959170113
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963104326
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963559471
+      }
+    ],
+    "15.1 Capture a Supabase recovery point / backup for production and record it as the documented restore target": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959170328
+      },
+      {
+        "executionId": "6867f309-b640-4792-809e-0b706fe0421a",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788964455398
+      }
+    ],
+    "15.2 Apply migration `002_phase2_admin.sql` to staging / a Supabase branch DB first and validate there (never production first)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959170530
+      }
+    ],
+    "15.3 Before/after verification on staging: `count(*)` on customers and collectors unchanged; spot-check sample existing field values byte-for-byte unchanged": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959170723
+      }
+    ],
+    "15.4 Additive-only reviewer checklist: read the migration and confirm no DROP/RENAME/TRUNCATE/ALTER COLUMN TYPE/DELETE": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959171117
+      }
+    ],
+    "15.5 Obtain explicit stakeholder approval, then apply migration 002 to production; re-verify record counts and existing values preserved": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959171423
+      }
+    ],
+    "2. Add charting dependency and Phase 2 constants (pure, DB-independent)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959466911
+      }
+    ],
+    "3. Extend types and add the terminology helper (pure)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959679918
+      }
+    ],
+    "3.3 Write unit test for terminology mapping": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959692250
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959860506
+      }
+    ],
+    "4. Extend validators and add status schemas (pure)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788959860272
+      }
+    ],
+    "5. Extract pure helpers for stats, filtering, aggregation, display, lifecycle, and CSV": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960147075
+      }
+    ],
+    "4.3 Write property test — backward-compatible registration stores nulls": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960155203
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960451247
+      }
+    ],
+    "4.4 Write property test — satisfaction is conditional on existing collection": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960156425
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960450145
+      }
+    ],
+    "4.5 Write property tests — status schemas accept iff in allowed set": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960157560
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960447646
+      }
+    ],
+    "4.6 Write unit tests for validators": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960158871
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960449027
+      }
+    ],
+    "5.4 Write property test — lifecycle action mapping": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960159726
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960452182
+      }
+    ],
+    "5.7 Write property test — CSV round-trip with null→empty": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960459888
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960690215
+      }
+    ],
+    "5.6 Write property tests — filtering, pagination, display, location": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960460595
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960689669
+      }
+    ],
+    "5.5 Write property tests — stat computation exactness": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960461771
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960688124
+      }
+    ],
+    "7. Author the Phase 2 database migration file (WRITE ONLY — do NOT apply to production here)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960948453
+      }
+    ],
+    "7.2 Write migration schema integration checks (run against staging/branch DB)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788960958218
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961110789
+      }
+    ],
+    "8. Implement the activity-log helper and wire status/export logging": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961109547
+      }
+    ],
+    "8.2 Write property test + unit test for activity entries": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961111953
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961450300
+      }
+    ],
+    "9. Extend registration forms and server actions (wired to staging DB)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961449785
+      }
+    ],
+    "10. Extend and add admin API routes (wired to staging DB)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961636785
+      }
+    ],
+    "9.3 Write unit tests for form rendering": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961646175
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962070187
+      }
+    ],
+    "10.6 Write integration tests for API routes (against staging/seeded data)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788961647375
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962070452
+      }
+    ],
+    "12. Build chart components (Recharts, ResponsiveContainer)": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962468200
+      }
+    ],
+    "12.2 Write unit/render tests for chart components": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962784554
+      }
+    ],
+    "13. Build and extend admin UI pages, shared controls, and navigation": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962976715
+      }
+    ],
+    "13.9 Write unit tests for navigation and detail rendering": [
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788962987199
+      },
+      {
+        "executionId": "136751de-7f33-47a4-b75b-4d6fc1ffd0a5",
+        "chatSessionId": "sess_49852286-ca1e-45ed-a7f3-4588ee8a7a92",
+        "timestamp": 1788963103432
+      }
+    ]
+  }
+}
