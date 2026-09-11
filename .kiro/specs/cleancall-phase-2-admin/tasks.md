@@ -278,7 +278,7 @@ Language: **TypeScript** (matches the Phase 1 codebase and the design; no pseudo
 
 - [ ] 15. Production migration apply (HARD APPROVAL GATE — HUMAN-APPROVED ONLY, do NOT auto-run)
   - > This task modifies the LIVE production database and MUST NOT be executed automatically. It proceeds only after every gate below passes in order and explicit stakeholder approval is recorded.
-  - [~] 15.1 Capture a Supabase recovery point / backup for production and record it as the documented restore target
+  - [x] 15.1 Capture a Supabase recovery point / backup for production and record it as the documented restore target
     - _Requirements: 1.6_
   - [~] 15.2 Apply migration `002_phase2_admin.sql` to staging / a Supabase branch DB first and validate there (never production first)
     - _Requirements: 1.2, 1.3, 1.4, 19.1, 19.2, 19.3_
