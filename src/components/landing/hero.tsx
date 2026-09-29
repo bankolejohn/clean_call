@@ -30,6 +30,14 @@ export function Hero() {
           >
             <Link href="/register/collector">I Provide Waste Services</Link>
           </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full border-primary-foreground/40 bg-transparent text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
+          >
+            <Link href="/request-pickup">Request a Pickup</Link>
+          </Button>
         </div>
       </div>
     </section>
