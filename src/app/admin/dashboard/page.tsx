@@ -11,8 +11,15 @@ import {
   WillingnessToPayChart,
   ExistingCollectionChart,
 } from "@/components/admin/charts";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { DashboardStats, LGABreakdownItem } from "@/types";
+
+// The dashboard API extends DashboardStats with the Phase 3 pending-requests
+// count. Read it via a loosened type so the shared DashboardStats stays intact.
+type DashboardStatsWithRequests = DashboardStats & {
+  pendingRequests?: number;
+};
 
 // Shape of the query-derived chart datasets returned by GET /api/admin/analytics.
 interface AnalyticsData {
@@ -24,7 +31,7 @@ interface AnalyticsData {
 }
 
 export default function DashboardPage() {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [stats, setStats] = useState<DashboardStatsWithRequests | null>(null);
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -46,7 +53,7 @@ export default function DashboardPage() {
           return;
         }
 
-        const statsData: DashboardStats = await statsRes.json();
+        const statsData: DashboardStatsWithRequests = await statsRes.json();
         const analyticsData: AnalyticsData = await analyticsRes.json();
         setStats(statsData);
         setAnalytics(analyticsData);
@@ -91,6 +98,26 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold">Dashboard</h1>
 
       <StatsCards stats={stats} />
+
+      {/* Phase 3: pending collection-requests count, linking into the list
+          filtered to PENDING. */}
+      <Link href="/admin/requests?status=PENDING" className="block">
+        <Card className="transition-colors hover:bg-muted/40">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Pending Requests
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {stats.pendingRequests ?? 0}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Collection requests awaiting review
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
 
       {analytics && (
         <div className="grid gap-6 lg:grid-cols-2">

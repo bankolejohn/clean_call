@@ -29,3 +29,9 @@ export type { ProviderStatus } from './provider-status';
 
 export { WANTS_MORE_CUSTOMERS } from './wants-more-customers';
 export type { WantsMoreCustomers } from './wants-more-customers';
+
+export { WASTE_TYPES } from './waste-types';
+export type { WasteType } from './waste-types';
+
+export { REQUEST_STATUSES } from './request-status';
+export type { RequestStatus } from './request-status';

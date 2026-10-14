@@ -1,0 +1,13 @@
+{
+  "pbtResults": {
+    "5.3 Write property tests for the submission schema": {
+      "status": "passed",
+      "lastRunTimestamp": 1790674971069
+    },
+    "6.2 Write property tests for filter + public view": {
+      "status": "passed",
+      "lastRunTimestamp": 1790674971967
+    }
+  },
+  "executionHistory": {}
+}

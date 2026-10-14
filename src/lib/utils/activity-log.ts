@@ -21,12 +21,23 @@ import type { SupabaseClient } from "@supabase/supabase-js";
  * without a schema change (Requirement 19.3).
  */
 export type ActivityActionType =
+  // Phase 2 (unchanged)
   | "admin_login"
   | "customer_status_change"
   | "provider_approval"
   | "provider_suspension"
   | "provider_status_change"
-  | "data_export";
+  | "data_export"
+  // Phase 3 (new)
+  | "request_created"
+  | "request_reviewed"
+  | "request_assigned"
+  | "request_accepted"
+  | "request_status_change"
+  | "request_en_route"
+  | "request_completed"
+  | "request_cancelled"
+  | "request_disputed";
 
 /**
  * Records a single activity entry. Best-effort only: logging must NEVER fail the

@@ -55,6 +55,17 @@ const navLinks: NavLink[] = [
       },
     ],
   },
+  {
+    href: "/admin/requests",
+    label: "Collection Requests",
+    subViews: [
+      { href: "/admin/requests", label: "All" },
+      { href: "/admin/requests?status=PENDING", label: "Pending" },
+      { href: "/admin/requests?status=ASSIGNED", label: "Assigned" },
+      { href: "/admin/requests?status=COMPLETED", label: "Completed" },
+      { href: "/admin/requests?status=CANCELLED", label: "Cancelled" },
+    ],
+  },
   { href: "/admin/locations", label: "Locations" },
   { href: "/admin/analytics", label: "Analytics" },
   { href: "/admin/exports", label: "Exports" },
