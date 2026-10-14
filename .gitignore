@@ -44,3 +44,6 @@ next-env.d.ts
 .db.local
 *.dump.sql
 backups/
+
+# Kiro tooling + specs — kept local only, not published to the public repo
+.kiro/
