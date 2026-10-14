@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RequestPickupForm } from "@/components/forms/request-pickup-form";
 
 export const metadata = {
@@ -9,6 +10,15 @@ export const metadata = {
 export default function RequestPickupPage() {
   return (
     <main className="mx-auto max-w-lg px-4 py-12">
+      <div className="mb-6">
+        <Link
+          href="/"
+          className="text-sm text-muted-foreground transition-colors hover:text-foreground hover:underline"
+        >
+          &larr; Back to home
+        </Link>
+      </div>
+
       <div className="mb-8 text-center">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Request a Pickup
