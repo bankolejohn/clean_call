@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -10,6 +12,15 @@ export function Footer() {
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
           &copy; {currentYear} CleanCall. All rights reserved.
+        </p>
+        {/* Subtle admin entry point — intentionally understated. */}
+        <p className="mt-4 text-xs text-muted-foreground/70">
+          <Link
+            href="/admin/login"
+            className="transition-colors hover:text-foreground hover:underline"
+          >
+            Admin
+          </Link>
         </p>
       </div>
     </footer>
